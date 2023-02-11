@@ -4,5 +4,5 @@
 
 - Install and configuration Z shell
   ```
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshrc/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/install.sh)"
   ```
