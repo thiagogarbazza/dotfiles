@@ -23,6 +23,7 @@ export ZSH="$HOME/.config/zsh/ohmyzsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f $ZSH/custom/themes/zsh-syntax-highlighting.sh ]] || source $ZSH/custom/themes/zsh-syntax-highlighting.sh
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

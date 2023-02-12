@@ -31,6 +31,7 @@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZD
 
 echo "Install powerline10k theme"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZDOTDIR/ohmyzsh/custom/themes/powerlevel10k
+curl -fsSl https://raw.githubusercontent.com/dracula/zsh-syntax-highlighting/master/zsh-syntax-highlighting.sh -o $ZDOTDIR/ohmyzsh/custom/themes/zsh-syntax-highlighting.sh
 
 echo "Install dotfiles"
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshrc -o $ZDOTDIR/.zshrc
