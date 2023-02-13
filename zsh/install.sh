@@ -1,19 +1,17 @@
 #!/bin/bash
 
-export XDG_CONFIG_HOME=$HOME/.config
+export ZSH_CONFIG_HOME=$HOME/.config/zsh
+export ZSH_PLUGINS_HOME=$HOME/.config/zsh/ohmyzsh/custom/plugins
+export ZSH_THEME_HOME=$HOME/.config/zsh/ohmyzsh/custom/themes
+export ZDOTDIR=$ZSH_CONFIG_HOME
 
 echo "┌──────────────────────────────────────────────────────────────────────────────┐"
 echo "├───────── Install and configuration of Zsh                           ─────────┤"
 echo "└──────────────────────────────────────────────────────────────────────────────┘"
 
-mkdir -p $XDG_CONFIG_HOME/zsh
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-
 echo "Install fonts"
-sudo apt install fonts-font-awesome -y
 git clone --depth=1 https://github.com/powerline/fonts.git /tmp/powerline-fonts
 sh /tmp/powerline-fonts/install.sh
-rm -rf /tmp/powerline-fonts
 
 echo "Install ZSH"
 ## For mor information see https://www.zsh.org/
@@ -23,17 +21,26 @@ chsh -s $(which zsh)
 
 echo " Install Oh My ZSH!"
 ### For more information see https://ohmyz.sh/#install
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
 echo "Install pluins"
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZDOTDIR/ohmyzsh/custom/plugins/zsh-autosuggestions
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/ohmyzsh/custom/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGINS_HOME/zsh-autosuggestions
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS_HOME/zsh-syntax-highlighting
 
-echo "Install powerline10k theme"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZDOTDIR/ohmyzsh/custom/themes/powerlevel10k
-curl -fsSl https://raw.githubusercontent.com/dracula/zsh-syntax-highlighting/master/zsh-syntax-highlighting.sh -o $ZDOTDIR/ohmyzsh/custom/themes/zsh-syntax-highlighting.sh
+echo "Install themes"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_THEME_HOME/powerlevel10k
+curl -fsSl https://raw.githubusercontent.com/dracula/zsh-syntax-highlighting/master/zsh-syntax-highlighting.sh -o $ZSH_THEME_HOME/zsh-syntax-highlighting.sh
 
 echo "Install dotfiles"
-curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshrc -o $ZDOTDIR/.zshrc
-curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/p10k.zsh -o $ZDOTDIR/.p10k.zsh
-cp $ZDOTDIR/.zshrc $HOME/.zshrc
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshenv -o $HOME/.zshenv
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshrc -o $ZSH_CONFIG_HOME/.zshrc
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/p10k.zsh -o $ZSH_CONFIG_HOME/p10k.zsh
+mkdir -p $HOME/.local/share/zsh/
+touch $HOME/.local/share/zsh/history
+
+echo "Clean"
+rm -rf /tmp/powerline-fonts
+rm -rf $HOME/.zshrc
+rm -rf $HOME/.zsh_history
+rm -rf $HOME/.zcompdump*
+
