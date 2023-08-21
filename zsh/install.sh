@@ -20,7 +20,7 @@ zsh --version
 chsh -s $(which zsh)
 
 echo " Install Oh My ZSH!"
-### For more information see https://ohmyz.sh/#install
+## For more information see https://ohmyz.sh/#install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
 echo "Install pluins"
@@ -32,7 +32,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_THEME_HOME
 curl -fsSl https://raw.githubusercontent.com/dracula/zsh-syntax-highlighting/master/zsh-syntax-highlighting.sh -o $ZSH_THEME_HOME/zsh-syntax-highlighting.sh
 
 echo "Install dotfiles"
-curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshenv -o $HOME/.zshenv
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshenv -o $ZSH_CONFIG_HOME/.zshenv
+ln -s $ZSH_CONFIG_HOME/.zshenv $HOME/.zshenv
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/zshrc -o $ZSH_CONFIG_HOME/.zshrc
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/p10k.zsh -o $ZSH_CONFIG_HOME/p10k.zsh
 mkdir -p $HOME/.local/share/zsh/
@@ -43,4 +44,3 @@ rm -rf /tmp/powerline-fonts
 rm -rf $HOME/.zshrc
 rm -rf $HOME/.zsh_history
 rm -rf $HOME/.zcompdump*
-
