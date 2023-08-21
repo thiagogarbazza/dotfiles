@@ -1,5 +1,8 @@
+[alias]
+  pristine = !git reset --hard && git clean -dffx
 [core]
   longpaths = true
+  autocrlf = false
 [init]
   defaultBranch = main
 [merge]
@@ -8,7 +11,7 @@
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [user]
   name = Thiago Garbazza
-  email = thiagogarbazza@gmail.com
+  email = 1093328+thiagogarbazza@users.noreply.github.com
 
 # COLORS
 # ------
