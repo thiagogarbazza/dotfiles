@@ -1,13 +1,17 @@
 #!/bin/bash
 
+set -euo pipefail
+
 export ZSH_CONFIG_HOME=$HOME/.config/zsh
 export ZSH_PLUGINS_HOME=$HOME/.config/zsh/ohmyzsh/custom/plugins
 export ZSH_THEME_HOME=$HOME/.config/zsh/ohmyzsh/custom/themes
 export ZDOTDIR=$ZSH_CONFIG_HOME
 
-echo "┌──────────────────────────────────────────────────────────────────────────────┐"
-echo "├───────── Install and configuration of Zsh                           ─────────┤"
-echo "└──────────────────────────────────────────────────────────────────────────────┘"
+echo "
+┌──────────────────────────────────────────────────────────────────────────────┐
+├───────── Install and configuration zsh                              ─────────┤
+└──────────────────────────────────────────────────────────────────────────────┘
+"
 
 echo "Install fonts"
 git clone --depth=1 https://github.com/powerline/fonts.git /tmp/powerline-fonts

@@ -1,11 +1,15 @@
 #!/bin/bash
 
+set -euo pipefail
+
 export SDKMAN_CONFIG_HOME=$HOME/.config/sdkman
 export SDKMAN_DIR=$HOME/.config/sdkman
 
-echo "┌──────────────────────────────────────────────────────────────────────────────┐"
-echo "├───────── Install and configuration dev kit java                     ─────────┤"
-echo "└──────────────────────────────────────────────────────────────────────────────┘"
+echo "
+┌──────────────────────────────────────────────────────────────────────────────┐
+├───────── Install and configuration dev kit java                     ─────────┤
+└──────────────────────────────────────────────────────────────────────────────┘
+"
 
 echo "Install tools"
 sudo apt install zip unzip -y
