@@ -12,7 +12,7 @@ echo "
 
 echo "Install tools"
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install zip unzip --assume-yes --quiet
+  sudo apt install zip unzip -y
 elif [ -x "$(command -v pacman)" ]; then
   sudo pacman zip unzip --sync --noconfirm
 fi

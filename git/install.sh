@@ -11,7 +11,7 @@ echo "
 
 echo "Install git"
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install git --assume-yes --quiet
+  sudo apt install git -y
 elif [ -x "$(command -v pacman)" ]; then
   sudo pacman git --sync --noconfirm
 fi

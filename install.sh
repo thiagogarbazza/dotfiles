@@ -27,7 +27,7 @@ echo "
 "
 
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install zip unzip curl wget --assume-yes --quiet
+  sudo apt install zip unzip curl wget -y
 elif [ -x "$(command -v pacman)" ]; then
   sudo pacman zip unzip curl wget --sync --noconfirm
 else

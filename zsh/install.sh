@@ -12,18 +12,17 @@ echo "
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-echo "Install fonts"
-git clone --depth=1 https://github.com/powerline/fonts.git /tmp/powerline-fonts
-sh /tmp/powerline-fonts/install.sh
-
 echo "Install ZSH"
 ## For mor information see https://www.zsh.org/
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install zsh --assume-yes --quiet
+  sudo apt install zsh -y
 elif [ -x "$(command -v pacman)" ]; then
   sudo pacman zsh --sync --noconfirm
 fi
-chsh -s $(which zsh)
+
+echo "Install fonts"
+git clone --depth=1 https://github.com/powerline/fonts.git /tmp/powerline-fonts
+sh /tmp/powerline-fonts/install.sh
 
 echo " Install Oh My ZSH!"
 ## For more information see https://ohmyz.sh/#install
@@ -50,3 +49,6 @@ rm -rf /tmp/powerline-fonts
 rm -rf $HOME/.zshrc
 rm -rf $HOME/.zsh_history
 rm -rf $HOME/.zcompdump*
+
+echo "Define ZSH by default"
+chsh --shell $(which zsh)

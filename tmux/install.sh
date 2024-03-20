@@ -12,7 +12,7 @@ echo "
 echo "Install tmux"
 mkdir -p $TMUX_CONFIG_HOME
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install tmux --assume-yes --quiet
+  sudo apt install tmux -y
 elif [ -x "$(command -v pacman)" ]; then
   sudo pacman tmux --sync --noconfirm
 fi
