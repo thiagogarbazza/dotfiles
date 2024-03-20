@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 export GIT_CONFIG_HOME=$HOME/.config/git
@@ -11,7 +10,11 @@ echo "
 "
 
 echo "Install git"
-sudo apt install git -y
+if [ -x "$(command -v apt)" ]; then
+  sudo apt install git --assume-yes --quiet
+elif [ -x "$(command -v pacman)" ]; then
+  sudo pacman git --sync --noconfirm
+fi
 
 echo "Install dotfiles"
 mkdir -p $GIT_CONFIG_HOME

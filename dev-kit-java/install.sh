@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 export SDKMAN_CONFIG_HOME=$HOME/.config/sdkman
@@ -12,16 +11,21 @@ echo "
 "
 
 echo "Install tools"
-sudo apt install zip unzip -y
+if [ -x "$(command -v apt)" ]; then
+  sudo apt install zip unzip --assume-yes --quiet
+elif [ -x "$(command -v pacman)" ]; then
+  sudo pacman zip unzip --sync --noconfirm
+fi
 
 echo "Install sdkman"
 ## For more information see https://sdkman.io/install
-curl -s "https://get.sdkman.io?rcupdate=false" | bash
+curl -fsSL "https://get.sdkman.io" | bash
 
+set +eu # disable exitting on error temporarily
 source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 echo "Install jdk"
-sdk install java 20.0.2-tem
+sdk install java
 
 echo "Install maven"
 sdk install maven

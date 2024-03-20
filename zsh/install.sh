@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 export ZSH_CONFIG_HOME=$HOME/.config/zsh
@@ -19,8 +18,11 @@ sh /tmp/powerline-fonts/install.sh
 
 echo "Install ZSH"
 ## For mor information see https://www.zsh.org/
-sudo apt install zsh -y
-zsh --version
+if [ -x "$(command -v apt)" ]; then
+  sudo apt install zsh --assume-yes --quiet
+elif [ -x "$(command -v pacman)" ]; then
+  sudo pacman zsh --sync --noconfirm
+fi
 chsh -s $(which zsh)
 
 echo " Install Oh My ZSH!"

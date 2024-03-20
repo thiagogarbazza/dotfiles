@@ -11,11 +11,10 @@ echo "
 
 echo "Install tmux"
 mkdir -p $TMUX_CONFIG_HOME
-echo "Install git"
-if [ -x "$(command -v apk)" ]; then
-  apk add tmux --force --no-interactive
-elif [ -x "$(command -v apt)" ]; then
+if [ -x "$(command -v apt)" ]; then
   sudo apt install tmux --assume-yes --quiet
+elif [ -x "$(command -v pacman)" ]; then
+  sudo pacman tmux --sync --noconfirm
 fi
 
 echo "Install plugins"
