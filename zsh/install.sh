@@ -51,4 +51,4 @@ rm -rf $HOME/.zsh_history
 rm -rf $HOME/.zcompdump*
 
 echo "Define ZSH by default"
-chsh --shell $(which zsh) $(whoami)
+sudo usermod -s $(which zsh) $(whoami)
