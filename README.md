@@ -1,11 +1,16 @@
 # Thiago Garbazza’s dotfiles
 
-## Installation
+A collection of my personal dotfiles and system configuration
 
-- Install and configuration git
-  ```sh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/git/install.sh)"
-  ```
-- Install and configuration zsh
-  ```sh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/install.sh)"
+## Features
+
+- All color schemes are based on [Dracula Theme](https://draculatheme.com/).
+- Terminal and coding font is [JetBrains Mono](https://www.jetbrains.com/lp/mono/).
+
+## Install
+
+Run follow command:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/install.sh | bash
+```
