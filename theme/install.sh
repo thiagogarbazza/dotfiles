@@ -10,7 +10,10 @@ echo "
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-# !TODO ignorar quando executando no wsl
+# No install theme on WSL.
+if [ "${$(uname -r):l}" =~ "microsoft" ]; then
+  exit 0
+fi
 
 echo "Install theme"
 curl -sSLo dracula-theme.zip https://github.com/dracula/gtk/archive/master.zip

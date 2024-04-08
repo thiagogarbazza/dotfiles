@@ -42,3 +42,5 @@ curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/dev-ki
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/dev-kit-node/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/tmux/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/install.sh | bash
+
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/theme/install.sh | bash
