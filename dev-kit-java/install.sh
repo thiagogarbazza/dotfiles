@@ -10,11 +10,27 @@ echo "
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-echo "Install tools"
-if [ -x "$(command -v apt)" ]; then
-  sudo apt install zip unzip -y
-elif [ -x "$(command -v pacman)" ]; then
-  sudo pacman zip unzip --sync --noconfirm
+if [ -x "$(command -v zip)" ]; then
+  echo "zip and unzip already installed"
+else
+  echo "Install dependency packages: zip unzip"
+
+  case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
+    *darwin*)
+      brew install zip unzip
+      ;;
+    *linux*)
+      if [ -x "$(command -v apt)" ]; then
+        sudo apt install zip unzip -y
+      elif [ -x "$(command -v pacman)" ]; then
+        sudo pacman zip unzip --sync --noconfirm
+      fi
+      ;;
+    *)
+      echo "error: unsupported platform.";
+      exit 2;
+      ;;
+  esac;
 fi
 
 echo "Install sdkman"
