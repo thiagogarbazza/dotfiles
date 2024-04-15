@@ -7,24 +7,5 @@ echo "
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-if [ -x "$(command -v docker)" ]; then
-  echo "Docker already installed"
-else
-  echo "Install docker"
-
-  case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
-    *darwin*)
-      brew install docker
-      ;;
-    *linux*)
-      curl -fsSL https://get.docker.com | bash
-      ;;
-    *)
-      echo "error: unsupported platform.";
-      exit 2;
-      ;;
-  esac;
-fi
-
-echo "User configuration"
+curl -fsSL https://get.docker.com | bash
 sudo usermod -aG docker $(whoami)
