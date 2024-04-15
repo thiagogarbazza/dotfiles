@@ -12,6 +12,7 @@ echo "
 
 # No install theme on WSL.
 if [ "${$(uname -r):l}" =~ "microsoft" ]; then
+  echo "No install theme on WSL."
   exit 0
 fi
 
