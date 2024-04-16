@@ -35,7 +35,7 @@ fi
 
 echo "Install sdkman"
 ## For more information see https://sdkman.io/install
-curl -fsSL "https://get.sdkman.io" | bash
+curl -fsSL "https://get.sdkman.io?rcupdate=false" | bash
 
 set +eu # disable exitting on error temporarily
 source "${SDKMAN_DIR}/bin/sdkman-init.sh"
