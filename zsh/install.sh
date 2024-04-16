@@ -12,12 +12,27 @@ echo "
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-echo "Install ZSH"
-## For mor information see https://www.zsh.org/
-if [ -x "$(command -v apt)" ]; then
-  sudo apt install zsh -y
-elif [ -x "$(command -v pacman)" ]; then
-  sudo pacman zsh --sync --noconfirm
+if [ -x "$(command -v zsh)" ]; then
+  echo "zsh already installed"
+else
+  echo "Install zsh"
+
+  case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
+    *darwin*)
+      brew install zsh
+      ;;
+    *linux*)
+      if [ -x "$(command -v apt)" ]; then
+        sudo apt install zsh -y
+      elif [ -x "$(command -v pacman)" ]; then
+        sudo pacman zsh --sync --noconfirm
+      fi
+      ;;
+    *)
+      echo "error: unsupported platform.";
+      exit 2;
+      ;;
+  esac;
 fi
 
 echo "Install fonts"
