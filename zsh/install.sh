@@ -35,6 +35,10 @@ else
   esac;
 fi
 
+echo "Clean old configuration"
+rm -rf $ZSH_CONFIG_HOME \
+       $HOME/.zshenv
+
 echo "Install fonts"
 git clone --depth=1 https://github.com/powerline/fonts.git /tmp/powerline-fonts
 sh /tmp/powerline-fonts/install.sh
@@ -60,10 +64,12 @@ mkdir -p $HOME/.local/share/zsh/
 touch $HOME/.local/share/zsh/history
 
 echo "Clean"
-rm -rf /tmp/powerline-fonts
-rm -rf $HOME/.zshrc
-rm -rf $HOME/.zsh_history
-rm -rf $HOME/.zcompdump*
+rm -rf /tmp/powerline-fonts \
+       $HOME/.zshrc \
+       $HOME/.zprofile \
+       $HOME/.zsh_history \
+       $HOME/.zsh_sessions \
+       $HOME/.zcompdump*
 
 echo "Define ZSH by default"
 sudo usermod -s $(which zsh) $(whoami)
