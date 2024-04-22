@@ -2,8 +2,8 @@
 set -euo pipefail
 
 export XDG_CONFIG_HOME=$HOME/.config
-export DIR_THEME=/usr/share/themes/dracula
-export DIR_ICON_THEME=/usr/share/icons/dracula
+export DIR_THEME=$HOME/.theme/dracula
+export DIR_ICON_THEME=$HOME/.icons/dracula
 export DIR_FONT="$HOME/.local/share/fonts"
 
 echo "
@@ -23,6 +23,7 @@ case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
 
     echo "Install theme on Terminal.app"
     rm -rf $XDG_CONFIG_HOME/theme/Dracula.terminal
+    mkdir -p $XDG_CONFIG_HOME/theme
     curl -fsSl https://raw.githubusercontent.com/dracula/terminal-app/master/Dracula.terminal -o $XDG_CONFIG_HOME/theme/Dracula.terminal
     defaults write com.apple.Terminal "Window Settings" -dict-add "Dracula" "$(cat $XDG_CONFIG_HOME/theme/Dracula.terminal)"
     defaults write com.apple.Terminal "Default Window Settings" "Dracula"
