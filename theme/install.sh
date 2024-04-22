@@ -12,10 +12,9 @@ echo "
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-# No install theme on WSL.
 if [[ "$(uname -r| tr '[:upper:]' '[:lower:]')" =~ "microsoft" ]]; then
   echo "No install theme on WSL."
-  #exit 0
+  exit 0
 fi
 
 case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
