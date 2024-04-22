@@ -39,7 +39,6 @@ case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
 esac;
 
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/git/install.sh | bash
-curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/dev-kit/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/dev-kit-docker/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/dev-kit-java/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/dev-kit-node/install.sh | bash
