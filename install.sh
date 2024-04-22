@@ -46,3 +46,4 @@ curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/tmux/i
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/zsh/install.sh | bash
 
 curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/theme/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/thiagogarbazza/dotfiles/main/apps/install.sh | bash
