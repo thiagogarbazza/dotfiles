@@ -18,6 +18,9 @@ else
       ;;
     *linux*)
       curl -fsSL https://get.docker.com | bash
+
+      echo "User configuration"
+      sudo usermod -aG docker $(whoami)
       ;;
     *)
       echo "error: unsupported platform.";
@@ -25,6 +28,3 @@ else
       ;;
   esac;
 fi
-
-echo "User configuration"
-sudo usermod -aG docker $(whoami)
