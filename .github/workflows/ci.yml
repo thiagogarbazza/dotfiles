@@ -20,4 +20,4 @@ jobs:
       - name: Test GIT
         run:
           bash tests/verify_git.sh
-          zsh tests/verify_zsh.sh
+          zsh tests/verify_git.sh
