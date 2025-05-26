@@ -1,19 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-export VOLTA_HOME=$HOME/.config/volta
-
 echo "
 ┌──────────────────────────────────────────────────────────────────────────────┐
-├───────── Install and configuration dev kit node                     ─────────┤
+├───────── Install and configuration tmux                             ─────────┤
 └──────────────────────────────────────────────────────────────────────────────┘
 "
 
-echo "Install Volta"
-## For more information see https://docs.volta.sh/guide/getting-started
-curl -fsSL https://get.volta.sh | bash
+TMUX_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/tmux"
 
-export PATH="$VOLTA_HOME/bin:$PATH"
+echo "Install plugins"
+git clone --depth=1 https://github.com/tmux-plugins/tpm $TMUX_DATA_HOME/plugins/tpm
 
-echo "Install Nodejs"
-volta install node

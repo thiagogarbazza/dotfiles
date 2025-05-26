@@ -1,15 +1,16 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.config/zsh/ohmyzsh"
+export ZSH="$XDG_DATA_HOME/ohmyzsh"
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -116,14 +117,38 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="$PATH:$HOME/.local/bin"
+
+export WGETRC="$XDG_CONFIG_HOME/wget/config"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/p10k.zsh" ]] || source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/p10k.zsh"
+[[ ! -f "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
+
+# Configuration dev kit docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker/machine"
 
 # Configuration dev kit java
-# ! THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+if [[ -d "$XDG_DATA_HOME/sdkman" ]]; then
+  export SDKMAN_DIR="$XDG_DATA_HOME/sdkman"
+  source "$SDKMAN_DIR/bin/sdkman-init.sh"
+fi
 
 # Configuration dev kit node
-export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+if [[ -d "$XDG_DATA_HOME/volta" ]]; then
+  export VOLTA_HOME="$XDG_DATA_HOME/volta"
+  export PATH="$VOLTA_HOME/bin$PATH"
+  export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
+  export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+fi
+
+# Configuration dev kit python
+if [[ -d "$XDG_DATA_HOME/pyenv" ]]; then
+  export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
+  export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+  export PYTHONUSERBASE=$XDG_DATA_HOME/python
+  export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+  export PATH="$PYENV_ROOT/bin:$PYTHONUSERBASE/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv virtualenv-init -)"
+fi

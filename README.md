@@ -14,8 +14,10 @@ A collection of my personal dotfiles and system configuration
     - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
   - [tmux](https://github.com/tmux/tmux/wiki) terminal multiplexer.
 - Configure [GIT](https://git-scm.com/).
-- Develop toolkit java with [SDKMAN!](https://sdkman.io/).
-- Develop toolkit nodejs with [Volta](hhttps://volta.sh/).
+- Develop toolkit:
+  - Java with [SDKMAN!](https://sdkman.io/).
+  - Node.js with [Volta](https://volta.sh/).
+  - Python with [pyenv](https://github.com/pyenv/pyenv).
 
 ## Install
 

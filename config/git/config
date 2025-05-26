@@ -3,8 +3,10 @@
 [core]
   longpaths = true
   autocrlf = false
+  safecrlf = false
 [init]
   defaultBranch = main
+  templateDir = ~/.config/git/init-template
 [merge]
   tool = code
 [mergetool "code"]
