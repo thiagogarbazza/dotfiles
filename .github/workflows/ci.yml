@@ -5,6 +5,8 @@ on:
       - 'docs/**'
 
 jobs:
+
+
   test:
     name: Test installer
     runs-on: ${{ matrix.os }}
@@ -17,5 +19,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Install
         run: bash install.sh
+      - name: list
+        run: ls -la
       - name: Test GIT
         run: tests/verify_git.sh
+        shell: bash
+      - name: Test GIT
+        run: tests/verify_git.sh
+        shell: zsh
