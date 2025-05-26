@@ -28,4 +28,4 @@ jobs:
         shell: bash
       - name: Test GIT
         run: tests/verify-git.sh
-        shell: zsh
+        shell: zsh {0}
