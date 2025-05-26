@@ -14,7 +14,7 @@ else
 
   case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
     *darwin*)
-      brew install docker
+      brew install --cask docker
       ;;
     *linux*)
       curl -fsSL https://get.docker.com | bash
