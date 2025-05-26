@@ -21,6 +21,8 @@ jobs:
         run: bash install.sh
       - name: list
         run: ls -la
+      - name: list tests
+        run: ls -la tests
       - name: Test GIT
         run: tests/verify-git.sh
         shell: bash
