@@ -18,6 +18,4 @@ jobs:
       - name: Install
         run: bash install.sh
       - name: Test GIT
-        run: |
-          bash tests/verify_git.sh
-          zsh  tests/verify_git.sh
+        run: tests/verify_git.sh
