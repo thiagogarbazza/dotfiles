@@ -22,8 +22,8 @@ jobs:
       - name: list
         run: ls -la
       - name: Test GIT
-        run: tests/verify_git.sh
+        run: tests/verify-git.sh
         shell: bash
       - name: Test GIT
-        run: tests/verify_git.sh
+        run: tests/verify-git.sh
         shell: zsh
