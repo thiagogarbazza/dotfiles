@@ -35,8 +35,8 @@ cp --recursive --force --archive config $XDG_CONFIG_HOME
 case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
   *darwin*)
     brew install curl git tmux unzip wget zip zsh
-    bash installer/install-apps-macos.sh
-    bash installer/install-theme-macos.sh
+    #bash installer/install-apps-macos.sh
+    #bash installer/install-theme-macos.sh
     ;;
   *linux*)
     if [ -x "$(command -v apt)" ]; then
@@ -52,8 +52,8 @@ case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
       exit 3
     fi
 
-    bash installer/install-apps-linux.sh
-    bash installer/install-theme-linux.sh
+    #bash installer/install-apps-linux.sh
+    #bash installer/install-theme-linux.sh
     ;;
   *)
     echo "error: unsupported platform."

@@ -19,7 +19,7 @@ fi
 
 echo "Install flatpak"
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install flatpak -y
+  sudo apt install --assume-yes flatpak
 elif [ -x "$(command -v pacman)" ]; then
   sudo pacman flatpak --sync --noconfirm
 else
