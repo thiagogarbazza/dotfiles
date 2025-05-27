@@ -26,6 +26,3 @@ jobs:
       - name: Test GIT
         run: tests/verify-git.sh
         shell: bash
-      - name: Test GIT
-        run: tests/verify-git.sh
-        shell: zsh {0}
