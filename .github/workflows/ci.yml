@@ -23,6 +23,12 @@ jobs:
         run: ls -la
       - name: list tests
         run: ls -la tests
-      - name: Test GIT
-        run: tests/verify-git.sh
+      - name: Test
+        run: |
+          set -euo pipefail
+
+          for f in tests/*.sh; do
+            echo "Run test: $f"
+            $f
+          done
         shell: bash

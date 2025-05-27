@@ -119,7 +119,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:$HOME/.local/bin"
 
-export WGETRC="$XDG_CONFIG_HOME/wget/config"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
