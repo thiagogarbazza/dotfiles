@@ -117,6 +117,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias docker-pristine="$XDG_CONFIG_HOME/scripts/docker-pristine.sh"
+
 export PATH="$PATH:$HOME/.local/bin"
 
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
