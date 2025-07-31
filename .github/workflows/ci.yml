@@ -19,16 +19,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install
         run: bash install.sh
-      - name: list
-        run: ls -la
-      - name: list tests
-        run: ls -la tests
       - name: Test
-        run: |
-          set -euo pipefail
-
-          for f in tests/*.sh; do
-            echo "Run test: $f"
-            $f
-          done
+        run: tests/run-tests.sh
         shell: bash
