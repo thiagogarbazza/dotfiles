@@ -18,6 +18,8 @@ A collection of my personal dotfiles and system configuration
   - Java with [SDKMAN!](https://sdkman.io/).
   - Node.js with [Volta](https://volta.sh/).
   - Python with [pyenv](https://github.com/pyenv/pyenv).
+- Use XDG Base Directory: https://wiki.archlinux.org/title/XDG_Base_Directory
+
 
 ## Install
 
