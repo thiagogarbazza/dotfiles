@@ -17,21 +17,29 @@ DIR_FONT="${XDG_DATA_HOME:-HOME/.local/share}/fonts"
 
 mkdir -p $DIR_FONT
 
+download_fonts() {
+  rm -rf /tmp/font-$1-releases.json /tmp/font-$1.zip /tmp/font-$1
+
+  curl --location --show-error \
+    --write-out "Download of %{url} finished\n" \
+    --output /tmp/font-$1-releases.json \
+    $2
+  FONT_URL=$(sed -n 's/.*"browser_download_url": *"\([^"]*\)".*/\1/p' /tmp/font-$1-releases.json)
+  curl --location --show-error \
+    --write-out "Download of %{url} finished\n" \
+    --output /tmp/font-$1.zip \
+    $FONT_URL
+}
 
 echo "
 ┌──── Install font: Cascadia Code
 └───────────────────────────────────────────────────────────────────────────────
 " # https://github.com/microsoft/cascadia-code
 
-rm -rf /tmp/cascadia-code.zip /tmp/cascadia-code
 find $DIR_FONT -name "CascadiaCode*" -exec rm -rf {} \;
-FONT_VERSION=$(curl -s "https://api.github.com/repos/microsoft/cascadia-code/releases/latest" | sed -n 's|.*"tag_name": "v\([^"]*\)".*|\1|p')
-curl --location --show-error \
-  --write-out "Download of %{url} finished\n" \
-  --output /tmp/cascadia-code.zip \
-  https://github.com/microsoft/cascadia-code/releases/download/v$FONT_VERSION/CascadiaCode-$FONT_VERSION.zip
-unzip -qq /tmp/cascadia-code.zip -d /tmp/cascadia-code
-mv /tmp/cascadia-code/ttf/*.ttf $DIR_FONT
+download_fonts cascadia-code 'https://api.github.com/repos/microsoft/cascadia-code/releases/latest'
+unzip -qq /tmp/font-cascadia-code.zip -d /tmp/font-cascadia-code
+mv /tmp/font-cascadia-code/ttf/*.ttf $DIR_FONT
 
 
 echo "
@@ -39,31 +47,10 @@ echo "
 └───────────────────────────────────────────────────────────────────────────────
 " # https://github.com/tonsky/FiraCode
 
-rm -rf /tmp/firacode.zip /tmp/firacode
 find $DIR_FONT -name "FiraCode*" -exec rm -rf {} \;
-FONT_VERSION=$(curl -s "https://api.github.com/repos/tonsky/FiraCode/releases/latest" | sed -n 's|.*"tag_name": "\([^"]*\)".*|\1|p')
-curl --location --show-error \
-  --write-out "Download of %{url} finished\n" \
-  --output  /tmp/firacode.zip \
-  https://github.com/tonsky/FiraCode/releases/download/$FONT_VERSION/Fira_Code_v$FONT_VERSION.zip
-unzip -qq /tmp/firacode.zip -d /tmp/firacode
-mv /tmp/firacode/ttf/*.ttf $DIR_FONT
-
-
-echo "
-┌──── Install font: Hack
-└───────────────────────────────────────────────────────────────────────────────
-" # https://sourcefoundry.org/hack/
-
-rm -rf /tmp/hack.zip /tmp/hack
-find $DIR_FONT -name "Hack*" -exec rm -rf {} \;
-FONT_VERSION=$(curl -s "https://api.github.com/repos/source-foundry/Hack/releases/latest" | sed -n 's|.*"tag_name": "\([^"]*\)".*|\1|p')
-curl --location --show-error \
-  --write-out "Download of %{url} finished %{errormsg}\n" \
-  --output  /tmp/hack.zip \
-  https://github.com/source-foundry/Hack/releases/download/$FONT_VERSION/Hack-$FONT_VERSION-ttf.zip
-unzip -qq /tmp/hack.zip -d /tmp/hack
-mv /tmp/hack/ttf/*.ttf $DIR_FONT
+download_fonts fira-code https://api.github.com/repos/tonsky/FiraCode/releases/latest
+unzip -qq /tmp/font-fira-code.zip -d /tmp/font-fira-code
+mv /tmp/font-fira-code/ttf/*.ttf $DIR_FONT
 
 
 echo "
@@ -71,12 +58,7 @@ echo "
 └───────────────────────────────────────────────────────────────────────────────
 " # https://www.jetbrains.com/lp/mono/
 
-rm -rf /tmp/jetbrains-mono.zip /tmp/jetbrains-mono
 find $DIR_FONT -name "JetBrain*" -exec rm -rf {} \;
-FONT_VERSION=$(curl -s "https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest" | sed -n 's|.*"tag_name": "v\([^"]*\)".*|\1|p')
-curl --location --show-error \
-  --write-out "Download of %{url} finished\n" \
-  --output /tmp/jetbrains-mono.zip \
-  https://download.jetbrains.com/fonts/JetBrainsMono-$FONT_VERSION.zip
-unzip -qq /tmp/jetbrains-mono.zip -d /tmp/jetbrains-mono
-mv /tmp/jetbrains-mono/fonts/ttf/*.ttf $DIR_FONT
+download_fonts jetbrains-mono https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest
+unzip -qq /tmp/font-jetbrains-mono.zip -d /tmp/font-jetbrains-mono
+mv /tmp/font-jetbrains-mono/fonts/ttf/*.ttf $DIR_FONT
