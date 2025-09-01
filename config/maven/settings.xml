@@ -5,4 +5,18 @@
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       https://maven.apache.org/xsd/settings-1.0.0.xsd">
   <localRepository>${env.XDG_CACHE_HOME}/maven/repository</localRepository>
+
+  <profiles>
+    <profile>
+      <id>development-mode</id>
+      <properties>
+        <downloadSources>true</downloadSources>
+        <downloadJavadocs>true</downloadJavadocs>
+      </properties>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>development-mode</activeProfile>
+  </activeProfiles>
 </settings>
