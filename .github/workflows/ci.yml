@@ -12,8 +12,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
+        os: [fedora-latest, ubuntu-latest]
     steps:
       - name: Set up git repository
         uses: actions/checkout@v4
