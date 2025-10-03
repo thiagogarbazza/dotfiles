@@ -65,6 +65,7 @@ bash installer/install-fonts.sh
 bash installer/install-dev-kit-docker.sh
 bash installer/install-dev-kit-java.sh
 bash installer/install-dev-kit-node.sh
+bash installer/install-dev-kit-podman.sh
 bash installer/install-dev-kit-python.sh
 bash installer/install-ssh.sh
 bash installer/install-tmux.sh
