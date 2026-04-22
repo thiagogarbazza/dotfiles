@@ -117,8 +117,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias docker-pristine="$XDG_CONFIG_HOME/scripts/docker-pristine.sh"
-
 export PATH="$PATH:$HOME/.local/bin"
 
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
@@ -129,6 +127,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 # Configuration dev kit docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker/machine"
+alias docker-pristine="$XDG_CONFIG_HOME/scripts/docker-pristine.sh"
 
 # Configuration dev kit java
 if [[ -d "$XDG_DATA_HOME/sdkman" ]]; then
