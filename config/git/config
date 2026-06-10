@@ -1,23 +1,5 @@
 [alias]
   pristine = !git reset --hard && git clean -dffx
-[core]
-  longpaths = true
-  autocrlf = false
-  safecrlf = false
-[init]
-  defaultBranch = main
-  templateDir = ~/.config/git/init-template
-[merge]
-  tool = code
-[mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
-[user]
-  name = Thiago Garbazza
-  email = 1093328+thiagogarbazza@users.noreply.github.com
-
-# COLORS
-# ------
-# Dracula Dark Theme
 [color]
   ui = auto
 [color "branch"]
@@ -57,3 +39,24 @@
   unmerged = magenta bold reverse
   untracked = red
   updated = green bold
+[commit]
+  gpgsign = true
+[core]
+  autocrlf = false
+  longpaths = true
+  safecrlf = false
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  allowedSignersFile = ~/.config/git/allowed_signers
+[init]
+  defaultBranch = main
+  templateDir = ~/.config/git/init-template
+[merge]
+  tool = code
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[user]
+  name = Thiago Garbazza
+  email = 1093328+thiagogarbazza@users.noreply.github.com
+  signingkey = ~/.config/ssh/id_ed25519_github
