@@ -1,17 +1,16 @@
 ---
 applyTo: '**/pom.xml'
-description: 'Instruções específicas para organizar e limpar arquivos pom.xml'
+description: 'Instruções específicas do Maven POM.xml'
 ---
 
 # Diretrizes para organização de arquivos POM.xml
 
-Quando eu pedir para você organizar, limpar ou estruturar um arquivo `pom.xml`,
-você deve seguir rigorosamente as regras abaixo:
+Quando eu pedir para você executar qualquer ação em um arquivo `pom.xml`, você deve seguir rigorosamente as regras abaixo.
 
 ## Princípios fundamentais
 
 - Builds Maven DEVEM ser determinísticos, reprodutíveis e fáceis de entender.
-- Configurações DEVEM ser explícitas,centralizadas, preferencialmente no pom parent/agregador.
+- Configurações DEVEM ser explícitas, centralizadas, preferencialmente no pom parent/agregador.
 - A clareza e a manutenção a longo prazo são prioridades máximas.
 - DEVE utilizar o padrão kebab-case para nomear o projeto em `<groupId>`, seguindo a convenção de domínio invertido (ex: `com.empresa.projeto`).
 - DEVE utilizar o padrão kebab-case para nomear o projeto em `<artifactId>`.
@@ -30,7 +29,8 @@ você deve seguir rigorosamente as regras abaixo:
 app-parent/
 ├── app-backend/
 │   ├── app-core/
-│   └── app-jobs/
+│   ├── app-jobs/
+│   └── app-rff/
 └── app-frontend/
 ```
 
@@ -40,14 +40,16 @@ As dependências e plugins específicos de cada módulo devem ser declarados nos
 #### 2.1 Pom parent/agregador
 
 - DEVE concentrar as propriedades de versões de dependências e plugins, usando o padrão `${dependency.nome-da-dependencia.version}` e `${plugin.nome-do-plugin.version}`.
+- DEVE conter o bloco `<modules>` listando os módulos filhos.
 - DEVE conter o bloco `<dependencyManagement>` para centralizar as versões das dependências.
 - DEVE conter o bloco `<pluginManagement>` para centralizar as versões dos plugins.
-- DEVE conter o bloco `<modules>` listando os módulos filhos.
 
 #### 2.2 Poms dos módulos filhos
 
-- DEVE declarar apenas as dependências e plugins específicos do módulo, sem versões hardcoded.
+- DEVE declarar apenas as dependências e plugins específicos do módulo, sem versões hardcoded (com exceção das dependências internas).
 - DEVE herdar as versões das dependências e plugins do pom parent/agregador.
+- NÃO DEVE conter o bloco `<dependencyManagement>` ou `<pluginManagement>`, pois isso deve ser centralizado no pom parent/agregador.
+- NÃO DEVE conter o bloco `<profiles>`, pois isso deve ser centralizado no pom parent/agregador.
 
 ### 3. Ordem dos Blocos Estruturais
 
@@ -68,21 +70,27 @@ Mantenha a estrutura do arquivo XML na seguinte ordem hierárquica principal:
 
 - Propriedades DEVEM ser ordenadas alfabeticamente.
 - Propriedades DEVEM ser agrupadas por tipo, separadas por linhas em branco.
-  1. Grupo de propriedades de versão das dependências (ex: `dependency.junit.version`, `dependency.spring.version`)
-  2. Grupo de propriedades de versão dos plugins (ex: `plugin.compiler.version`, `plugin.surefire.version`)
-  3. Grupo de propriedades de configuração do projeto (ex: `project.build.sourceEncoding`, `project.reporting.outputEncoding`)
+  1. Grupo dependências (ex: `dependency.junit.version`, `dependency.spring.version`)
+  2. Grupo jacoco (ex: `jacoco.append`, `jacoco.destFile`)
+  3. Grupo maven (ex: `maven.compiler.source`, `maven.compiler.target`)
+  4. Grupo plugins (ex: `plugin.compiler.version`, `plugin.surefire.version`)
+  5. Grupo projeto (ex: `project.build.sourceEncoding`, `project.reporting.outputEncoding`)
+  6. Grupo sonar (ex: `sonar.exclusions`, `sonar.host.url`)
 
 ### 5. Organização das dependências
 
 - Dependências DEVEM ser ordenadas alfabeticamente primeiro por `<groupId>` e depois por `<artifactId>`.
 - Dependências NÃO DEVEM possuir a tag `<scope>compile</scope>`, pois este já é o escopo padrão do Maven.
 - DEVEM mover qualquer versão declarada diretamente (*hardcoded*) nas tags `<dependency>` para o bloco `<properties>` usando o padrão `${dependency.nome-da-dependencia.version}`.
+  - DEVE utilizar o padrão kebbab-case para `nome-da-dependencia`.
   - Em caso de projetos multi-módulo, DEVE centralizar as versões das dependências no pom parent/agregador usando o bloco `<dependencyManagement>`.
+  - Em caso de projetos multi-módulo, DEVE adicionar *hardcode* apenas as dependências internas do projeto.
 
 ### 6. Organização dos plugins
 
 - Plugins DEVEM ser ordenados alfabeticamente primeiro por `<groupId>` e depois por `<artifactId>`.
 - DEVEM mover qualquer versão declarada diretamente (*hardcoded*) nas tags `<plugin>` para o bloco `<properties>` usando o padrão `${plugin.nome-do-plugin.version}`.
+  - DEVE utilizar o padrão kebbab-case para `nome-do-plugin`.
   - Em caso de projetos multi-módulo, DEVE centralizar as versões dos plugins no pom parent/agregador usando o bloco `<pluginManagement>`.
 
 ### 7. Organização dos profiles
